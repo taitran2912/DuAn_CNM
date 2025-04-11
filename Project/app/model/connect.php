@@ -1,13 +1,18 @@
 <?php
-class connection{
-    public function connection_aborted(){
+class connection {
+    private $con;
 
-        $con = mysqli_connect("localhost", "root", "", "nongsan");
-        mysqli_set_charset($con,'utf8');
-        return $con;
+    public function __construct() {
+        $this->con = mysqli_connect("localhost", "root", "", "nongsan");
+        mysqli_set_charset($this->con, 'utf8');
     }
-    public function close($con){
-        mysqli_close($con);
+
+    public function getConnection() {
+        return $this->con;
+    }
+
+    public function close() {
+        mysqli_close($this->con);
     }
 }
 ?>
